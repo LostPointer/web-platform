@@ -1,0 +1,54 @@
+name: Release packages
+
+on:
+  push:
+    branches: [main, next]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          cache: pnpm
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      - id: changesets
+        uses: changesets/action@v1
+        with:
+          version: node scripts/version.mjs
+          publish: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - uses: actions/checkout@v4
+        if: steps.changesets.outputs.published == 'true'
+        with:
+          repository: LostPointer/task_tracker
+          path: consumers/task_tracker
+      - uses: actions/checkout@v4
+        if: steps.changesets.outputs.published == 'true'
+        with:
+          repository: LostPointer/product_dev_course
+          path: consumers/product_dev_course
+      - name: Verify task_tracker installs released packages
+        if: steps.changesets.outputs.published == 'true'
+        working-directory: consumers/task_tracker
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm --filter @task-tracker/web build
+      - name: Verify product_dev_course installs released packages
+        if: steps.changesets.outputs.published == 'true'
+        working-directory: consumers/product_dev_course
+        run: |
+          npm ci
+          npm --workspace experiment-tracking-frontend run build

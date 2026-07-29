@@ -17,5 +17,14 @@ The governing decision is [ADR-0001](docs/adr/0001-shared-web-platform.md).
 | `@lostpointer/web-http` | Axios factory and transport-level error helpers. |
 | `@lostpointer/web-testing` | Browser and React test helpers. |
 
-This repository is intentionally documentation-only during P10-01. P10-02
-will add the TypeScript monorepo, CI, Changesets and publishing workflow.
+## Development
+
+The repository is a pnpm workspace that requires Node 24. Run `corepack enable`
+once, then use `pnpm install --frozen-lockfile` and `pnpm check` for the full
+local verification suite.
+
+The packages have deliberately empty entrypoints until their respective P10
+implementation tasks define public APIs. Their ESM packaging, exports and npm
+release pipeline are already validated in CI. See
+[the release flow](docs/release-flow.md) for Changesets, prereleases and npm
+publishing.

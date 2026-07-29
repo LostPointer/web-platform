@@ -1,0 +1,28 @@
+{
+  "name": "@lostpointer/web-mui",
+  "version": "0.0.0",
+  "description": "MUI 7 adapter for LostPointer web applications.",
+  "license": "MIT",
+  "type": "module",
+  "files": ["dist"],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "peerDependencies": {
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "@mui/material": "^7.0.0"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts --clean",
+    "check:exports": "publint"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
