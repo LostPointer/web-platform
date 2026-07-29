@@ -1,0 +1,5 @@
+# Architecture, package boundaries, and release policy require owner review.
+/docs/adr/ @LostPointer
+/package.json @LostPointer
+/.changeset/ @LostPointer
+/.github/ @LostPointer
