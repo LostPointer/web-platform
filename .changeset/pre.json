@@ -1,0 +1,12 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@lostpointer/web-mui": "0.0.0",
+    "@lostpointer/web-styles": "0.0.0",
+    "@lostpointer/web-tokens": "0.0.0"
+  },
+  "changesets": [
+    "green-lizards-smile"
+  ]
+}
