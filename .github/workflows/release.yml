@@ -64,7 +64,9 @@ jobs:
           pnpm --filter @task-tracker/web build
       - name: Verify product_dev_course installs released packages
         if: steps.changesets.outputs.published == 'true'
-        working-directory: consumers/product_dev_course
+        # experiment-tracking-frontend is a standalone package with its own
+        # lockfile, not an npm workspace of the repository root.
+        working-directory: consumers/product_dev_course/projects/frontend/apps/experiment-portal
         run: |
           npm ci
-          npm --workspace experiment-tracking-frontend run build
+          npm run build
