@@ -11,6 +11,11 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      # Personal access token with read access to the private task_tracker
+      # repository. Without it that consumer check is skipped instead of
+      # failing the release after a successful publish.
+      CONSUMER_REPO_TOKEN: ${{ secrets.CONSUMER_REPO_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -41,17 +46,18 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/checkout@v4
-        if: steps.changesets.outputs.published == 'true'
+        if: steps.changesets.outputs.published == 'true' && env.CONSUMER_REPO_TOKEN != ''
         with:
           repository: LostPointer/task_tracker
           path: consumers/task_tracker
+          token: ${{ secrets.CONSUMER_REPO_TOKEN }}
       - uses: actions/checkout@v4
         if: steps.changesets.outputs.published == 'true'
         with:
           repository: LostPointer/product_dev_course
           path: consumers/product_dev_course
       - name: Verify task_tracker installs released packages
-        if: steps.changesets.outputs.published == 'true'
+        if: steps.changesets.outputs.published == 'true' && env.CONSUMER_REPO_TOKEN != ''
         working-directory: consumers/task_tracker
         run: |
           pnpm install --frozen-lockfile
