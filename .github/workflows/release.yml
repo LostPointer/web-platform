@@ -35,6 +35,10 @@ jobs:
           publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # setup-node points NPM_CONFIG_USERCONFIG at a temporary .npmrc that
+          # resolves the auth token from NODE_AUTH_TOKEN, so the ~/.npmrc that
+          # changesets/action writes from NPM_TOKEN is never read.
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/checkout@v4
         if: steps.changesets.outputs.published == 'true'
