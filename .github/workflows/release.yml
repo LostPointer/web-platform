@@ -47,9 +47,9 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Ensure packages are public in npm
         run: |
-          npm access public @lostpointer/web-tokens
-          npm access public @lostpointer/web-styles
-          npm access public @lostpointer/web-mui
+          npm access set status=public @lostpointer/web-tokens
+          npm access set status=public @lostpointer/web-styles
+          npm access set status=public @lostpointer/web-mui
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/checkout@v4
