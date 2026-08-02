@@ -9,12 +9,16 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    }
+    },
+    "./variables.css": "./dist/variables.css",
+    "./variables.scss": "./dist/variables.scss"
   },
   "types": "./dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "build": "tsup src/index.ts --format esm --dts --clean",
+    "generate": "node scripts/generate.mjs",
+    "generate:check": "node scripts/generate.mjs --check",
+    "build": "pnpm generate:check && tsup src/index.ts --format esm --dts --clean && cp src/variables.css src/variables.scss dist/",
     "check:exports": "publint"
   },
   "publishConfig": {

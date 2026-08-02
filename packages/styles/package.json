@@ -9,12 +9,19 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    }
+    },
+    "./index.css": "./dist/index.css",
+    "./reset.css": "./dist/reset.css",
+    "./base.css": "./dist/base.css"
   },
   "types": "./dist/index.d.ts",
-  "sideEffects": false,
+  "sideEffects": ["**/*.css"],
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
+    "@lostpointer/web-tokens": "workspace:*"
+  },
   "scripts": {
-    "build": "tsup src/index.ts --format esm --dts --clean",
+    "build": "tsup src/index.ts --format esm --dts --clean && cp src/*.css dist/",
     "check:exports": "publint"
   },
   "publishConfig": {

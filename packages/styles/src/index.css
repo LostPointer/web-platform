@@ -1,0 +1,6 @@
+@layer lp-reset, lp-tokens, lp-base;
+
+@import '@fontsource-variable/inter/index.css' layer(lp-tokens);
+@import '@lostpointer/web-tokens/variables.css' layer(lp-tokens);
+@import './reset.css';
+@import './base.css';
