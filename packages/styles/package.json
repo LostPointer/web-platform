@@ -1,10 +1,12 @@
 {
   "name": "@lostpointer/web-styles",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Shared browser-safe base styles for LostPointer web applications.",
   "license": "MIT",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -15,7 +17,9 @@
     "./base.css": "./dist/base.css"
   },
   "types": "./dist/index.d.ts",
-  "sideEffects": ["**/*.css"],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",
     "@lostpointer/web-tokens": "workspace:*"
