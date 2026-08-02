@@ -1,6 +1,6 @@
 {
   "name": "@lostpointer/web-styles",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Shared browser-safe base styles for LostPointer web applications.",
   "license": "MIT",
   "type": "module",
