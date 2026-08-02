@@ -26,6 +26,7 @@
   },
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts --clean && cp src/*.css dist/",
+    "prepack": "pnpm build",
     "check:exports": "publint"
   },
   "publishConfig": {
