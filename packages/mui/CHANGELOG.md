@@ -1,5 +1,14 @@
 # @lostpointer/web-mui
 
+## 0.2.0
+
+### Minor Changes
+
+- 77c2410: Add `createLostpointerTheme()`, mapping canonical design tokens to a MUI 7
+  theme (palette, typography, shape, and component overrides for Button, Paper,
+  Dialog, Drawer, inputs, Chip, Tooltip, and Snackbar), plus a `Palette` type
+  augmentation exposing the shared `lp` semantic color namespace.
+
 ## 0.1.1
 
 ### Patch Changes
