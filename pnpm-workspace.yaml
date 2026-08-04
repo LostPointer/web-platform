@@ -6,3 +6,10 @@ onlyBuiltDependencies:
 allowBuilds:
   '@parcel/watcher': false
   esbuild: true
+minimumReleaseAgeExclude:
+  - '@storybook/builder-vite@10.5.6'
+  - '@storybook/csf-plugin@10.5.6'
+  - '@storybook/react-dom-shim@10.5.6'
+  - '@storybook/react-vite@10.5.6'
+  - '@storybook/react@10.5.6'
+  - storybook@10.5.6

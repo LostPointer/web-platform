@@ -1,5 +1,3 @@
-/**
- * The MUI theme adapter is introduced in P10-05.
- * This intentionally empty module establishes the published ESM entrypoint.
- */
-export {}
+export { createLostpointerTheme, type LostpointerThemeOptions } from './theme.js'
+export type { ThemeName } from '@lostpointer/web-tokens'
+export type { LostpointerPalette } from './augmentation.js'

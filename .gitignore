@@ -3,4 +3,5 @@ dist/
 coverage/
 .pnpm-store/
 *.tsbuildinfo
+storybook-static/
 .claude/

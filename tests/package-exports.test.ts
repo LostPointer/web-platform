@@ -7,7 +7,7 @@ const packageDirectories = ['tokens', 'styles', 'mui'] as const
 const expectedExports = {
   tokens: ['breakpoints', 'cssVariableNames', 'motion', 'palette', 'radii', 'shadows', 'spacing', 'themes', 'typography'],
   styles: [],
-  mui: [],
+  mui: ['createLostpointerTheme'],
 }
 
 describe('published package entrypoints', () => {
