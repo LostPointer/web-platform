@@ -34,7 +34,7 @@
   },
   "scripts": {
     "build": "tsup",
-    "prepack": "pnpm build",
+    "prepack": "pnpm --filter @lostpointer/web-tokens build && pnpm build",
     "check:exports": "publint"
   },
   "publishConfig": {
