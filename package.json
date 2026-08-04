@@ -9,7 +9,7 @@
   "scripts": {
     "build": "pnpm -r --if-present build",
     "lint": "eslint .",
-    "typecheck": "tsc -b",
+    "typecheck": "pnpm build && tsc -b",
     "test": "pnpm build && vitest run",
     "check:exports": "pnpm build && pnpm -r --if-present check:exports",
     "storybook": "storybook dev -p 6006",
