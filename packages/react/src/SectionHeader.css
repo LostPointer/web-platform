@@ -1,0 +1,20 @@
+.lp-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--lp-spacing-3, 12px);
+  margin-bottom: var(--lp-spacing-2, 8px);
+}
+
+.lp-section-header__title {
+  font-size: var(--lp-typography-font-sizes-sm, 14px);
+  font-weight: var(--lp-typography-font-weights-semibold, 600);
+  color: var(--lp-text, #0f172a);
+}
+
+.lp-section-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--lp-spacing-2, 8px);
+  flex-shrink: 0;
+}

@@ -1,0 +1,43 @@
+.lp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lp-spacing-1, 4px);
+  padding: 2px var(--lp-spacing-2, 8px);
+  border-radius: var(--lp-radii-pill, 999px);
+  font-size: var(--lp-typography-font-sizes-xs, 12px);
+  font-weight: var(--lp-typography-font-weights-semibold, 600);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: var(--lp-typography-line-heights-tight, 1.2);
+  white-space: nowrap;
+}
+
+.lp-badge--default {
+  background: var(--lp-surface-variant, #f1f5f9);
+  color: var(--lp-text-secondary, #64748b);
+}
+
+.lp-badge--primary {
+  background: var(--lp-primary-container, #e0e7ff);
+  color: var(--lp-primary, #4f46e5);
+}
+
+.lp-badge--success {
+  background: var(--lp-success-container, #dcfce7);
+  color: var(--lp-success, #16a34a);
+}
+
+.lp-badge--warning {
+  background: var(--lp-warning-container, #fef3c7);
+  color: var(--lp-warning, #d97706);
+}
+
+.lp-badge--danger {
+  background: var(--lp-error-container, #fef2f2);
+  color: var(--lp-error, #dc2626);
+}
+
+.lp-badge--info {
+  background: var(--lp-info-container, #e0f2fe);
+  color: var(--lp-info, #0284c7);
+}

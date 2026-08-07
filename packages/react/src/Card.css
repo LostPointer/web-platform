@@ -1,0 +1,32 @@
+.lp-card {
+  position: relative;
+  background: var(--lp-surface, #fefefe);
+  border-radius: var(--lp-radii-lg, 20px);
+  padding: var(--lp-spacing-5, 20px);
+  border: 1px solid var(--lp-border, #e2e8f0);
+  box-shadow: var(--lp-shadows-1, 0 1px 3px rgba(15, 23, 42, 0.06));
+}
+
+.lp-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--lp-spacing-3, 12px);
+  margin-bottom: var(--lp-spacing-3, 12px);
+  padding-bottom: var(--lp-spacing-3, 12px);
+  border-bottom: 1px solid var(--lp-border, #e2e8f0);
+}
+
+.lp-card-header__title {
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-weight: var(--lp-typography-font-weights-bold, 700);
+  letter-spacing: -0.02em;
+  color: var(--lp-text, #0f172a);
+}
+
+.lp-card-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--lp-spacing-2, 8px);
+  flex-shrink: 0;
+}

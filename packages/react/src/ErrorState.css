@@ -1,0 +1,42 @@
+.lp-error-state {
+  display: grid;
+  gap: var(--lp-spacing-3, 12px);
+  justify-items: start;
+  padding: var(--lp-spacing-5, 20px);
+  border-radius: var(--lp-radii-lg, 20px);
+  border: 1px solid var(--lp-error, #dc2626);
+  background: var(--lp-error-container, #fef2f2);
+  color: var(--lp-text, #0f172a);
+}
+
+.lp-error-state__title {
+  font-weight: var(--lp-typography-font-weights-semibold, 600);
+}
+
+.lp-error-state__message {
+  color: var(--lp-text-secondary, #64748b);
+  font-size: var(--lp-typography-font-sizes-body, 15px);
+}
+
+.lp-error-state__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--lp-spacing-2, 8px);
+}
+
+.lp-error-state__retry {
+  appearance: none;
+  border: 1px solid var(--lp-error, #dc2626);
+  border-radius: var(--lp-radii-sm, 8px);
+  background: transparent;
+  color: var(--lp-error, #dc2626);
+  font-size: var(--lp-typography-font-sizes-sm, 14px);
+  font-weight: var(--lp-typography-font-weights-semibold, 600);
+  padding: var(--lp-spacing-1, 4px) var(--lp-spacing-3, 12px);
+  cursor: pointer;
+}
+
+.lp-error-state__retry:hover {
+  background: var(--lp-error, #dc2626);
+  color: var(--lp-on-primary, #ffffff);
+}

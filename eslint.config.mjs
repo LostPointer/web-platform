@@ -19,4 +19,10 @@ export default tseslint.config(
       globals: globals.browser,
     },
   },
+  {
+    files: ['packages/*/src/**/*.test.ts', 'packages/*/src/**/*.test.tsx'],
+    languageOptions: {
+      globals: { ...globals.browser, ...globals.node },
+    },
+  },
 )

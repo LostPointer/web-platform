@@ -1,0 +1,20 @@
+.lp-form-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--lp-spacing-3, 12px);
+  margin-top: var(--lp-spacing-6, 24px);
+  padding-top: var(--lp-spacing-6, 24px);
+  border-top: 1px solid var(--lp-border, #e2e8f0);
+}
+
+.lp-form-actions--end {
+  justify-content: flex-end;
+}
+
+.lp-form-actions--start {
+  justify-content: flex-start;
+}
+
+.lp-form-actions--space-between {
+  justify-content: space-between;
+}

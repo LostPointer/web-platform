@@ -1,0 +1,5 @@
+.lp-page-container {
+  width: min(var(--lp-page-max, 1200px), 100%);
+  margin: 0 auto;
+  padding: 0 var(--lp-spacing-5, 20px) var(--lp-spacing-10, 40px);
+}
