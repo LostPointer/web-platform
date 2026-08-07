@@ -1,0 +1,39 @@
+{
+  "name": "@lostpointer/web-react",
+  "version": "0.0.0",
+  "description": "Domain-neutral, plain HTML/CSS React primitives for LostPointer web applications.",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "types": "./dist/index.d.ts",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "scripts": {
+    "build": "tsup && cp src/styles.css dist/styles.css",
+    "prepack": "pnpm build",
+    "check:exports": "publint"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

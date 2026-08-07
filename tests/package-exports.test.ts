@@ -3,11 +3,25 @@ import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { describe, expect, it } from 'vitest'
 
-const packageDirectories = ['tokens', 'styles', 'mui'] as const
+const packageDirectories = ['tokens', 'styles', 'mui', 'react'] as const
 const expectedExports = {
   tokens: ['breakpoints', 'cssVariableNames', 'motion', 'palette', 'radii', 'shadows', 'spacing', 'themes', 'typography'],
   styles: [],
   mui: ['createLostpointerTheme'],
+  react: [
+    'AppHeaderBar',
+    'Card',
+    'CardHeader',
+    'EmptyState',
+    'ErrorState',
+    'FormActions',
+    'FormDialog',
+    'Loading',
+    'PageContainer',
+    'PageHeader',
+    'SectionHeader',
+    'StatusBadge',
+  ],
 }
 
 describe('published package entrypoints', () => {
@@ -27,6 +41,7 @@ describe('published package entrypoints', () => {
     ['styles', 'index.css'],
     ['styles', 'reset.css'],
     ['styles', 'base.css'],
+    ['react', 'styles.css'],
   ])('includes %s/%s in the built package', async (directory, file) => {
     await expect(access(resolve('packages', directory, 'dist', file))).resolves.toBeUndefined()
   })

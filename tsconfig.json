@@ -3,6 +3,7 @@
   "references": [
     { "path": "./packages/tokens" },
     { "path": "./packages/styles" },
-    { "path": "./packages/mui" }
+    { "path": "./packages/mui" },
+    { "path": "./packages/react" }
   ]
 }

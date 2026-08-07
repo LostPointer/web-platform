@@ -2,6 +2,7 @@ import type { Preview } from '@storybook/react-vite'
 import { ThemeProvider } from '@mui/material/styles'
 import { createLostpointerTheme, type ThemeName } from '../packages/mui/src/index.js'
 import '../packages/styles/src/index.css'
+import '../packages/react/src/styles.css'
 
 const preview: Preview = {
   globalTypes: {
