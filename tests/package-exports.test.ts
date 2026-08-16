@@ -1,4 +1,4 @@
-import { access } from 'node:fs/promises'
+import { access, readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { describe, expect, it } from 'vitest'
@@ -44,5 +44,13 @@ describe('published package entrypoints', () => {
     ['react', 'styles.css'],
   ])('includes %s/%s in the built package', async (directory, file) => {
     await expect(access(resolve('packages', directory, 'dist', file))).resolves.toBeUndefined()
+  })
+
+  it('bundles the React styles into a self-contained published entrypoint', async () => {
+    const stylesheet = await readFile(resolve('packages', 'react', 'dist', 'styles.css'), 'utf8')
+
+    expect(stylesheet).toContain('.lp-page-header')
+    expect(stylesheet).toContain('.lp-form-dialog')
+    expect(stylesheet).not.toMatch(/@import\s/)
   })
 })
