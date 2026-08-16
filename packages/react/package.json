@@ -29,7 +29,7 @@
     "react-dom": "^19.2.3"
   },
   "scripts": {
-    "build": "tsup && cp src/styles.css dist/styles.css",
+    "build": "tsup",
     "prepack": "pnpm build",
     "check:exports": "publint"
   },

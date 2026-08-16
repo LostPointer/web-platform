@@ -7,7 +7,10 @@ import { defineConfig } from 'tsup'
  * under the root `tsc -b` composite project references otherwise.
  */
 export default defineConfig({
-  entry: ['src/index.ts'],
+  entry: {
+    index: 'src/index.ts',
+    styles: 'src/styles.css',
+  },
   format: ['esm'],
   clean: true,
   dts: {
