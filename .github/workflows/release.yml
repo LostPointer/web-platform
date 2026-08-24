@@ -50,6 +50,7 @@ jobs:
           npm access set status=public @lostpointer/web-tokens
           npm access set status=public @lostpointer/web-styles
           npm access set status=public @lostpointer/web-mui
+          npm access set status=public @lostpointer/web-react
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/checkout@v4
@@ -61,7 +62,7 @@ jobs:
       - uses: actions/checkout@v4
         if: steps.changesets.outputs.published == 'true'
         with:
-          repository: DafeCpp/product_dev_course
+          repository: LostPointer/product_dev_course
           path: consumers/product_dev_course
       - name: Verify task_tracker installs released packages
         if: steps.changesets.outputs.published == 'true' && env.CONSUMER_REPO_TOKEN != ''
