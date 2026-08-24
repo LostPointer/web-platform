@@ -1,5 +1,11 @@
 # @lostpointer/web-react
 
+## 0.1.1
+
+### Patch Changes
+
+- 5c40fc1: Publish the corrected stylesheet bundle for the React primitives package.
+
 ## 0.1.0
 
 ### Minor Changes
