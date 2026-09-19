@@ -28,3 +28,5 @@ implementation tasks define public APIs. Their ESM packaging, exports and npm
 release pipeline are already validated in CI. See
 [the release flow](docs/release-flow.md) for Changesets, prereleases and npm
 publishing.
+
+HTTP transport API and adoption: [HTTP foundation](docs/http.md).
