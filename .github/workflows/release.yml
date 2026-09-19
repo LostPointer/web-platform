@@ -46,11 +46,13 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Ensure packages are public in npm
+        if: steps.changesets.outputs.published == 'true'
         run: |
           npm access set status=public @lostpointer/web-tokens
           npm access set status=public @lostpointer/web-styles
           npm access set status=public @lostpointer/web-mui
           npm access set status=public @lostpointer/web-react
+          npm access set status=public @lostpointer/web-http
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/checkout@v4
