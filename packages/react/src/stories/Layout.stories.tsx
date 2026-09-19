@@ -39,9 +39,10 @@ export const PageHeaderMinimal: Story = {
 }
 
 export const PageHeaderNarrowViewport: Story = {
-  name: 'PageHeader (narrow viewport)',
+  name: 'PageHeader (mobile viewport)',
+  globals: { viewport: { value: 'mobile', isRotated: false } },
   render: () => (
-    <div style={{ padding: 24, maxWidth: 360 }}>
+    <div style={{ padding: 16 }}>
       <PageHeader
         eyebrow="Experiment"
         title="Sensor calibration run #42"
@@ -87,4 +88,19 @@ export const AppHeaderBarDemo: Story = {
       <div style={{ padding: 16, height: 600 }}>Scroll to see the header stay sticky.</div>
     </div>
   ),
+}
+
+export const PageHeaderTablet: Story = {
+  ...PageHeaderFull,
+  globals: { viewport: { value: 'tablet', isRotated: false } },
+}
+
+export const PageHeaderDesktop: Story = {
+  ...PageHeaderFull,
+  globals: { viewport: { value: 'desktop', isRotated: false } },
+}
+
+export const PageHeaderMobileDark: Story = {
+  ...PageHeaderNarrowViewport,
+  globals: { viewport: { value: 'mobile', isRotated: false }, theme: 'dark' },
 }

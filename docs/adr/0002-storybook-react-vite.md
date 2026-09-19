@@ -33,3 +33,20 @@ Framework — `@storybook/react-vite`, а не webpack-based framework: весь
 
 - Не вводить отдельный CI job/matrix ради Storybook.
 - Не публиковать Storybook как отдельный deployed artifact в рамках P10-05.
+
+## P10-08: responsive React examples
+
+В `.storybook/preview.tsx` заданы реальные viewport iframe: mobile 390×844,
+tablet 1024×768 и desktop 1440×900. Stories `React/Layout` закрепляют размеры
+через `globals.viewport`, включая mobile dark. Ограничение ширины контейнера
+не заменяет viewport, поскольку не активирует CSS media queries.
+
+React stories получают CSS tokens и `data-lp-theme`, но не MUI ThemeProvider;
+MUI stories сохраняют provider. Toolbar переключает light/dark для stories,
+у которых тема не закреплена.
+
+Проверка P10-08: полный `pnpm check` (69 tests), затем Chromium с открытием
+Storybook manager и измерением `innerWidth` внутри preview iframe. Для
+390/1024/1440 px подтверждены ширина iframe, отсутствие горизонтального
+переполнения и `flex-direction: column/row/row` у PageHeader. Mobile dark
+проверен отдельно; снимки light/dark просмотрены.
