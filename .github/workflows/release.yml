@@ -7,6 +7,9 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  # npm Trusted Publishing: pnpm exchanges the GitHub OIDC token for a
+  # short-lived npm publish token, so no long-lived npm credential is needed.
+  id-token: write
 
 jobs:
   release:
@@ -29,10 +32,6 @@ jobs:
           registry-url: https://registry.npmjs.org
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Verify npm publisher identity
-        run: npm whoami
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - id: changesets
         uses: changesets/action@v1
         with:
@@ -40,21 +39,14 @@ jobs:
           publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Optional fallback. pnpm publishes through Trusted Publishing first
+          # and uses this token only when the OIDC exchange is refused, which
+          # happens for a package that does not exist on npm yet.
           # setup-node points NPM_CONFIG_USERCONFIG at a temporary .npmrc that
           # resolves the auth token from NODE_AUTH_TOKEN, so the ~/.npmrc that
           # changesets/action writes from NPM_TOKEN is never read.
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Ensure packages are public in npm
-        if: steps.changesets.outputs.published == 'true'
-        run: |
-          npm access set status=public @lostpointer/web-tokens
-          npm access set status=public @lostpointer/web-styles
-          npm access set status=public @lostpointer/web-mui
-          npm access set status=public @lostpointer/web-react
-          npm access set status=public @lostpointer/web-http
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/checkout@v4
         if: steps.changesets.outputs.published == 'true' && env.CONSUMER_REPO_TOKEN != ''
         with:

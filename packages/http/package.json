@@ -3,6 +3,11 @@
   "version": "0.0.0",
   "description": "Domain-neutral Axios transport and normalized HTTP errors.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LostPointer/web-platform",
+    "directory": "packages/http"
+  },
   "type": "module",
   "files": [
     "dist"

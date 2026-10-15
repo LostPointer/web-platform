@@ -3,6 +3,11 @@
   "version": "0.1.1",
   "description": "Domain-neutral, plain HTML/CSS React primitives for LostPointer web applications.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LostPointer/web-platform",
+    "directory": "packages/react"
+  },
   "type": "module",
   "files": [
     "dist"

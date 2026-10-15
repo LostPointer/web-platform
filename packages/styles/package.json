@@ -3,6 +3,11 @@
   "version": "0.1.1",
   "description": "Shared browser-safe base styles for LostPointer web applications.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LostPointer/web-platform",
+    "directory": "packages/styles"
+  },
   "type": "module",
   "files": [
     "dist"
