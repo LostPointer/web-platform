@@ -3,6 +3,11 @@
   "version": "0.2.0",
   "description": "MUI 7 adapter for LostPointer web applications.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LostPointer/web-platform",
+    "directory": "packages/mui"
+  },
   "type": "module",
   "files": [
     "dist"

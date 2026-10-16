@@ -21,8 +21,9 @@ MUI 7, но их стили, базовые UI-решения и transport-ут�
 `@lostpointer`. Пакеты публикуются в публичный `https://registry.npmjs.org`.
 Потребителям не нужны npm credentials ни в CI, ни в Docker builds.
 
-Публикацию выполняет GitHub Actions из этого репозитория с `NPM_TOKEN`,
-хранимым только в GitHub Actions secrets. Выпуск создаётся Changesets, а
+Публикацию выполняет GitHub Actions из этого репозитория через npm Trusted
+Publishing (OIDC), без долгоживущего npm-токена. `NPM_TOKEN` в GitHub Actions
+secrets остаётся только запасным путём для первой публикации нового пакета. Выпуск создаётся Changesets, а
 публикация подтверждается владельцем репозитория.
 
 ### Пакеты и public exports
@@ -103,7 +104,7 @@ release и записи в Changeset.
 
 ## Безопасность
 
-`NPM_TOKEN` доступен только publish workflow. Public packages не должны
+OIDC-токен и запасной `NPM_TOKEN` доступны только publish workflow. Public packages не должны
 включать secrets, application configuration или user data. Consumer
 repositories не хранят registry credentials и устанавливают пакеты с
 публичного npm registry.
