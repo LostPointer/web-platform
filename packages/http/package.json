@@ -1,6 +1,6 @@
 {
   "name": "@lostpointer/web-http",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Domain-neutral Axios transport and normalized HTTP errors.",
   "license": "MIT",
   "type": "module",
