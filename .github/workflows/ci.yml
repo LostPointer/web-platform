@@ -40,6 +40,7 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm build
       - run: pnpm build-storybook
       - run: pnpm test:visual
       - uses: actions/upload-artifact@v4
