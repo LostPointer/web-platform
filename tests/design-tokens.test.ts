@@ -30,12 +30,12 @@ describe('canonical design tokens', () => {
     expect(Object.values(motion.durations)).toEqual(['100ms', '150ms', '200ms', '250ms'])
   })
 
-  it('keeps semantic theme roles aligned and preserves portal light values', () => {
+  it('keeps semantic theme roles aligned and pins the light values (status colours darkened to 4.5:1 contrast)', () => {
     expect(Object.keys(themes.dark)).toEqual(Object.keys(themes.light))
     expect(themes.light).toMatchObject({
       background: '#fafbfe', surface: '#fefefe', surfaceVariant: '#f1f5f9', border: '#e2e8f0',
-      text: '#0f172a', textSecondary: '#64748b', primary: '#4f46e5', primaryHover: '#4338ca',
-      success: '#16a34a', warning: '#d97706', error: '#dc2626', info: '#0284c7',
+      text: '#0f172a', textSecondary: '#5b6a80', primary: '#4f46e5', primaryHover: '#4338ca',
+      success: '#15803d', warning: '#b45309', error: '#b91c1c', info: '#0369a1',
     })
   })
 

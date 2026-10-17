@@ -26,7 +26,7 @@
   font-weight: var(--lp-typography-font-weights-semibold, 600);
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--lp-text-secondary, #64748b);
+  color: var(--lp-text-secondary, #5b6a80);
 }
 
 .lp-page-header__title-row {
@@ -44,7 +44,7 @@
 }
 
 .lp-page-header__description {
-  color: var(--lp-text-secondary, #64748b);
+  color: var(--lp-text-secondary, #5b6a80);
   font-size: var(--lp-typography-font-sizes-body, 15px);
 }
 

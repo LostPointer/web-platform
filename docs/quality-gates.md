@@ -21,15 +21,12 @@ with a written reason in the story.
 
 ### Known accessibility violations
 
-`knownViolations` in `e2e/a11y.spec.ts` lists the findings that exist today and
-need a brand-colour decision, not a test change. The suite also fails when an
-entry stops reproducing, so a fixed colour removes its own entry. Current list
-(all `color-contrast`, WCAG 1.4.3):
-
-- MUI contained Button `success`/`warning`/`info` (story `Button / Colors`)
-- MUI TextField label (story `Feedback / Inputs`)
-- `ErrorState` message and retry button
-- `StatusBadge` tones
+`knownViolations` in `e2e/a11y.spec.ts` lists findings that exist today and are
+accepted temporarily. It is empty: the light-theme `success`, `warning`, `error`,
+`info` and `textSecondary` colours were darkened to reach 4.5:1 (WCAG 1.4.3) on
+white and on their container backgrounds. Add an entry only with a tracked
+reason; the suite fails when an entry stops reproducing, so a fixed colour
+removes its own entry.
 
 ## Visual baselines
 

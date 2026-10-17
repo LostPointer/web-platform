@@ -32,7 +32,7 @@
 
 .lp-app-header__subtitle {
   font-size: var(--lp-typography-font-sizes-sm, 14px);
-  color: var(--lp-text-secondary, #64748b);
+  color: var(--lp-text-secondary, #5b6a80);
 }
 
 .lp-app-header__actions {
