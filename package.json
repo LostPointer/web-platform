@@ -9,7 +9,7 @@
   "scripts": {
     "build": "pnpm -r --if-present build",
     "lint": "eslint .",
-    "typecheck": "pnpm build && tsc -b",
+    "typecheck": "pnpm build && tsc -b && tsc -p tsconfig.e2e.json",
     "test": "pnpm build && vitest run",
     "check:exports": "pnpm build && pnpm -r --if-present check:exports",
     "storybook": "storybook dev -p 6006",
@@ -31,6 +31,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^24.13.5",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.1",
