@@ -17,7 +17,7 @@ export default defineConfig({
   // One baseline set per project; update with `pnpm test:visual:update`.
   snapshotPathTemplate: '{testDir}/__screenshots__/{projectName}/{arg}{ext}',
   expect: {
-    toHaveScreenshot: { animations: 'disabled', maxDiffPixelRatio: 0.001 },
+    toHaveScreenshot: { animations: 'disabled', maxDiffPixelRatio: 0.0001 },
   },
   use: {
     baseURL: `http://127.0.0.1:${PORT}`,

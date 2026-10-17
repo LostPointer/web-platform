@@ -30,6 +30,8 @@ removes its own entry.
 
 ## Visual baselines
 
+Screenshots are compared with `maxDiffPixelRatio` 0.0001, so even a small colour change fails until the baselines are updated.
+
 Baselines are PNGs in `e2e/__screenshots__/<project>/`. They are generated on
 the CI runner (Ubuntu, Playwright pinned by the lockfile), not on a laptop, so
 font rendering matches.
