@@ -18,7 +18,7 @@ type Story = StoryObj
 
 export const PaperElevations: Story = {
   render: () => (
-    <Stack direction="row" spacing={3} sx={{ p: 3 }}>
+    <Stack direction="row" useFlexGap flexWrap="wrap" spacing={3} sx={{ p: 3 }}>
       {([1, 2, 3] as const).map((elevation) => (
         <Paper key={elevation} elevation={elevation} sx={{ p: 3 }}>
           Elevation {elevation}
@@ -33,7 +33,7 @@ function DialogAndDrawerDemo() {
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   return (
-    <Stack direction="row" spacing={2} sx={{ p: 3 }}>
+    <Stack direction="row" useFlexGap flexWrap="wrap" spacing={2} sx={{ p: 3 }}>
       <Button variant="outlined" onClick={() => setDialogOpen(true)}>
         Open dialog
       </Button>

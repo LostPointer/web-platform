@@ -12,7 +12,7 @@ type Story = StoryObj<typeof Button>
 
 export const Variants: Story = {
   render: () => (
-    <Stack direction="row" spacing={2} sx={{ p: 3 }}>
+    <Stack direction="row" useFlexGap flexWrap="wrap" spacing={2} sx={{ p: 3 }}>
       <Button variant="contained">Contained</Button>
       <Button variant="outlined">Outlined</Button>
       <Button variant="text">Text</Button>
@@ -22,7 +22,7 @@ export const Variants: Story = {
 
 export const Colors: Story = {
   render: () => (
-    <Stack direction="row" spacing={2} sx={{ p: 3 }}>
+    <Stack direction="row" useFlexGap flexWrap="wrap" spacing={2} sx={{ p: 3 }}>
       <Button variant="contained" color="primary">Primary</Button>
       <Button variant="contained" color="success">Success</Button>
       <Button variant="contained" color="warning">Warning</Button>

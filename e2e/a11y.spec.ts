@@ -9,12 +9,6 @@ import { openStory, readStories } from './stories.js'
  * reproduces, so fixing a colour forces the entry to be deleted.
  */
 const knownViolations: Record<string, string[]> = {
-  'mui-adapter-button--colors': ['color-contrast'],
-  'mui-adapter-feedback--inputs': ['color-contrast'],
-  'react-feedback--error-state-plain': ['color-contrast'],
-  'react-feedback--error-state-with-retry': ['color-contrast'],
-  'react-feedback--error-state-with-action': ['color-contrast'],
-  'react-statusbadge--tones': ['color-contrast'],
 }
 
 const stories = readStories('no-a11y')

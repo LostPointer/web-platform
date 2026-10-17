@@ -14,7 +14,7 @@
 
 .lp-badge--default {
   background: var(--lp-surface-variant, #f1f5f9);
-  color: var(--lp-text-secondary, #64748b);
+  color: var(--lp-text-secondary, #5b6a80);
 }
 
 .lp-badge--primary {
@@ -24,20 +24,20 @@
 
 .lp-badge--success {
   background: var(--lp-success-container, #dcfce7);
-  color: var(--lp-success, #16a34a);
+  color: var(--lp-success, #15803d);
 }
 
 .lp-badge--warning {
   background: var(--lp-warning-container, #fef3c7);
-  color: var(--lp-warning, #d97706);
+  color: var(--lp-warning, #b45309);
 }
 
 .lp-badge--danger {
   background: var(--lp-error-container, #fef2f2);
-  color: var(--lp-error, #dc2626);
+  color: var(--lp-error, #b91c1c);
 }
 
 .lp-badge--info {
   background: var(--lp-info-container, #e0f2fe);
-  color: var(--lp-info, #0284c7);
+  color: var(--lp-info, #0369a1);
 }
