@@ -1,7 +1,9 @@
-import { defineConfig } from 'vitest/config'
+import { configDefaults, defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
+    // Playwright specs live in e2e/ and run through `pnpm test:visual`.
+    exclude: [...configDefaults.exclude, 'e2e/**'],
     // Individual jsdom-dependent test files opt in via a
     // `// @vitest-environment jsdom` pragma at the top of the file (see
     // packages/react/src/*.test.tsx) rather than environmentMatchGlobs,

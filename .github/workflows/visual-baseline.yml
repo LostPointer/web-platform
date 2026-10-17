@@ -1,0 +1,60 @@
+name: Update visual baselines
+
+# Regenerates e2e/__screenshots__ after an intentional visual change.
+# Trigger: add the `update-visual-baselines` label to a PR from this repository
+# (or run the workflow manually on a branch). The new commit shows every changed
+# PNG in the PR diff, so the visual change is reviewed explicitly. Baselines are
+# generated on the same runner image the CI `visual` job uses.
+on:
+  pull_request:
+    types: [labeled]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+  pull-requests: write
+
+jobs:
+  update:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.label.name == 'update-visual-baselines' &&
+       github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.9.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm build-storybook
+      - run: pnpm test:visual:update
+      - name: Commit changed baselines
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ github.event.pull_request.head.ref || github.ref_name }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add e2e/__screenshots__
+          if git diff --cached --quiet; then
+            echo "Baselines are up to date."
+          else
+            git commit -m "test: update visual baselines"
+            git push
+            # Pushes made with GITHUB_TOKEN do not start CI, so start it explicitly.
+            gh workflow run ci.yml --ref "$BRANCH"
+          fi
+      - name: Remove trigger label
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh pr edit ${{ github.event.pull_request.number }} --remove-label update-visual-baselines

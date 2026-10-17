@@ -30,7 +30,7 @@ export const TooltipDemo: Story = {
   name: 'Tooltip',
   render: () => (
     <Stack sx={{ p: 6 }}>
-      <Tooltip title="Themed tooltip content" arrow>
+      <Tooltip title="Themed tooltip content" arrow describeChild>
         <Button variant="outlined">Hover me</Button>
       </Tooltip>
     </Stack>
