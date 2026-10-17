@@ -5,7 +5,7 @@ import { openStory, readStories } from './stories.js'
 /**
  * Violations that exist in the design system today and need a token decision
  * (brand colours), not a test tweak. Every entry is tracked in
- * docs/accessibility-baseline.md. The suite fails when an entry no longer
+ * docs/quality-gates.md. The suite fails when an entry no longer
  * reproduces, so fixing a colour forces the entry to be deleted.
  */
 const knownViolations: Record<string, string[]> = {
@@ -54,24 +54,35 @@ test.describe('keyboard focus', () => {
         await page.keyboard.press('Tab')
         // The focus ring may transition in; wait for the next two frames to settle.
         await page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))))
-        const state = await page.evaluate(() => {
-          const el = document.activeElement
+        const state = await page.evaluate(async () => {
+          const el = document.activeElement as HTMLElement | null
           if (!el || el === document.body) return null
-          const hasRing = (target: Element | null, pseudo?: string) => {
-            if (!target) return false
-            const style = getComputedStyle(target, pseudo)
-            return (style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0) || style.boxShadow !== 'none'
-          }
+          const frames = () => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)))
           // MUI inputs draw the ring on the wrapping outline/underline, not the native <input>.
           const field = el.closest('.MuiInputBase-root')
-          const visibleRing =
-            hasRing(el) ||
-            hasRing(field?.querySelector('.MuiOutlinedInput-notchedOutline') ?? null) ||
-            (field !== null && getComputedStyle(field, '::after').transform !== 'none' && field.matches('.Mui-focused'))
+          const targets: Array<[Element | null, string | undefined]> = [
+            [el, undefined],
+            [field?.querySelector('.MuiOutlinedInput-notchedOutline') ?? null, undefined],
+            [field, '::after'],
+          ]
+          const signature = () =>
+            targets.map(([target, pseudo]) => {
+              if (!target) return ''
+              const style = getComputedStyle(target, pseudo)
+              const outline = style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0 ? style.outline : ''
+              return [outline, style.boxShadow, style.transform, style.borderColor].join('|')
+            })
+          const focused = signature()
           const box = el.getBoundingClientRect()
+          // A resting shadow (elevation) is not a focus ring: the ring must change what is drawn.
+          el.blur()
+          await frames()
+          const resting = signature()
+          el.focus()
+          await frames()
           return {
             key: `${el.tagName}:${el.textContent?.trim().slice(0, 30) ?? ''}:${box.x}:${box.y}`,
-            visibleRing,
+            visibleRing: focused.some((value, index) => value !== resting[index]),
             inViewport: box.bottom > 0 && box.right > 0 && box.top < innerHeight && box.left < innerWidth,
           }
         })
@@ -80,7 +91,7 @@ test.describe('keyboard focus', () => {
         expect(state.inViewport, `${state.key} scrolled into view`).toBe(true)
         seen.add(state.key)
       }
-      expect(seen.size, 'Tab reaches the interactive elements').toBeGreaterThan(0)
+      expect(seen.size, 'Tab reaches every interactive element').toBe(focusable)
     })
   }
 })

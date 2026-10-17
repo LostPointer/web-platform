@@ -44,7 +44,7 @@ function SnackbarDemo() {
       <Button variant="outlined" onClick={() => setOpen(true)}>
         Show snackbar
       </Button>
-      <Snackbar open={open} onClose={() => setOpen(false)} message="Themed snackbar content" autoHideDuration={4000} />
+      <Snackbar open={open} onClose={() => setOpen(false)} message="Themed snackbar content" />
     </Stack>
   )
 }

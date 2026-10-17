@@ -2,7 +2,8 @@ name: Update visual baselines
 
 # Regenerates e2e/__screenshots__ after an intentional visual change.
 # Trigger: add the `update-visual-baselines` label to a PR from this repository
-# (or run the workflow manually on a branch). The new commit shows every changed
+# (or run the workflow manually on a feature branch; main and next are refused,
+# baselines never land without a PR diff). The new commit shows every changed
 # PNG in the PR diff, so the visual change is reviewed explicitly. Baselines are
 # generated on the same runner image the CI `visual` job uses.
 on:
@@ -18,7 +19,9 @@ permissions:
 jobs:
   update:
     if: >-
-      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'workflow_dispatch' &&
+       github.ref_name != github.event.repository.default_branch &&
+       github.ref_name != 'next') ||
       (github.event.label.name == 'update-visual-baselines' &&
        github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-latest
@@ -55,7 +58,7 @@ jobs:
             gh workflow run ci.yml --ref "$BRANCH"
           fi
       - name: Remove trigger label
-        if: github.event_name == 'pull_request'
+        if: always() && github.event_name == 'pull_request'
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh pr edit ${{ github.event.pull_request.number }} --remove-label update-visual-baselines
