@@ -30,7 +30,7 @@ export const TooltipDemo: Story = {
   name: 'Tooltip',
   render: () => (
     <Stack sx={{ p: 6 }}>
-      <Tooltip title="Themed tooltip content" arrow>
+      <Tooltip title="Themed tooltip content" arrow describeChild>
         <Button variant="outlined">Hover me</Button>
       </Tooltip>
     </Stack>
@@ -44,7 +44,7 @@ function SnackbarDemo() {
       <Button variant="outlined" onClick={() => setOpen(true)}>
         Show snackbar
       </Button>
-      <Snackbar open={open} onClose={() => setOpen(false)} message="Themed snackbar content" autoHideDuration={4000} />
+      <Snackbar open={open} onClose={() => setOpen(false)} message="Themed snackbar content" />
     </Stack>
   )
 }

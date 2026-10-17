@@ -5,3 +5,5 @@ coverage/
 *.tsbuildinfo
 storybook-static/
 .claude/
+playwright-report/
+test-results/
