@@ -16,7 +16,7 @@ type Story = StoryObj
 
 export const Chips: Story = {
   render: () => (
-    <Stack direction="row" spacing={2} sx={{ p: 3 }}>
+    <Stack direction="row" useFlexGap flexWrap="wrap" spacing={2} sx={{ p: 3 }}>
       <Chip label="Primary" variant="filled" color="primary" />
       <Chip label="Success" variant="filled" color="success" />
       <Chip label="Warning" variant="filled" color="warning" />
