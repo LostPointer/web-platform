@@ -1,6 +1,6 @@
 {
   "name": "@lostpointer/web-mui",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "MUI 7 adapter for LostPointer web applications.",
   "license": "MIT",
   "repository": {
