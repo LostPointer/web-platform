@@ -57,7 +57,14 @@ test.describe('keyboard focus', () => {
         const state = await page.evaluate(async () => {
           const el = document.activeElement as HTMLElement | null
           if (!el || el === document.body) return null
-          const frames = () => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)))
+          const frames = async () => {
+            await new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)))
+            // Let focus transitions (MUI outlines/underlines) finish; never wait on a stuck animation.
+            await Promise.race([
+              Promise.all(document.getAnimations().map((animation) => animation.finished.catch(() => undefined))),
+              new Promise((done) => setTimeout(done, 500)),
+            ])
+          }
           // MUI inputs draw the ring on the wrapping outline/underline, not the native <input>.
           const field = el.closest('.MuiInputBase-root')
           const targets: Array<[Element | null, string | undefined]> = [
@@ -72,6 +79,7 @@ test.describe('keyboard focus', () => {
               const outline = style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0 ? style.outline : ''
               return [outline, style.boxShadow, style.transform, style.borderColor].join('|')
             })
+          await frames()
           const focused = signature()
           const box = el.getBoundingClientRect()
           // A resting shadow (elevation) is not a focus ring: the ring must change what is drawn.
